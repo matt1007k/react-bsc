@@ -89,9 +89,10 @@ const styles = theme => ({
 
 
 
-class Header extends React.Component {
+class Dashboard extends React.Component {
   state = {
-    open: false
+    open: false,
+    titleTemp: 'Dashdoard'
   };
 
   handleDrawerOpen = () => {
@@ -149,7 +150,7 @@ class Header extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                BSC
+                {this.state.titleTemp}
               </Typography>
             </Toolbar>
           </AppBar>
@@ -170,9 +171,9 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
+Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default withStyles(styles, { withTheme: true })(Dashboard);
