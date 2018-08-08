@@ -1,5 +1,3 @@
-import './App.css'
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -10,12 +8,17 @@ import indigo from '@material-ui/core/colors/indigo';
 
 import Appbar from './components/navigation/Appbar'
 
+import { withRouter } from 'react-router-dom';
+
+import './App.css'
+
+
 
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: {
-      main: '#2979ff',
+      main: '#651fff',
     },
   },
 });
@@ -25,7 +28,6 @@ const styles = theme => ({
     flexGrow: 1,
   },
   appFrame: {
-    height: 430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -47,22 +49,8 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-  },
-  'content-left': {
-    marginLeft: 0,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  'contentShift-left': {
-    marginLeft: 0,
   }
 });
-
-
 
 class App extends Component {
   state = {
@@ -72,30 +60,27 @@ class App extends Component {
   DrawerOpenNew = (newOpen) =>{
     this.setState({open: newOpen})
   }
+
+  goHome = () => {
+
+  }
     
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    console.log(this.props)
     return (
       <MuiThemeProvider theme={theme}>
-        
-        <div className={classes.root}>
-        
         <div className={classes.appFrame}>
           <Appbar />
           <main
-            className={classNames(classes.content, classes[`content-left`], {
-              [classes.contentShift]: open,
-              [classes[`contentShift-left`]]: open,
-            })}
+            className={classNames(classes.content)}
           >
             <div className={classes.drawerHeader} />
             {this.props.children}
           </main>
          
         </div>
-      </div>
-          
+      
       </MuiThemeProvider>
     );
   }
@@ -106,4 +91,4 @@ App.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(App);
+export default withRouter(withStyles(styles, { withTheme: true })(App));

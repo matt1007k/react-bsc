@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 
 
-import Title from '../components/Title';
+import Title from '../../components/Title';
 
 const styles = theme => ({
   margin: {
@@ -26,10 +26,10 @@ const styles = theme => ({
   },
 });
 
-class Dashboard extends React.Component{
+class MisionPage extends React.Component{
   state = {    
-    title: 'Dashboard',
-    subtitle: 'Bienvenido al panel de administración.',    
+    title: 'Vision',
+    subtitle: 'Administrar la visión de la organización.',    
   };
 
   
@@ -56,8 +56,8 @@ class Dashboard extends React.Component{
   }
 }
 
-Dashboard.propTypes = {
+MisionPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles)(MisionPage);

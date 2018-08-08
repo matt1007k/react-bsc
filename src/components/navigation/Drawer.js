@@ -11,9 +11,7 @@ import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import menuListItem from './Menu';
-
-
+import MenuListItem from './MenuListItem';
 
 
 const styles = theme  => ({
@@ -59,7 +57,7 @@ class Drawer extends React.Component {
         </div>
         <Divider />
         <div className={classes.list}>
-          <List>{menuListItem}</List>
+          <List><MenuListItem /></List>
         </div>
       </div>
     );
