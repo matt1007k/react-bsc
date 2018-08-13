@@ -13,6 +13,7 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import DomainIcon from '@material-ui/icons/Domain';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import MapIcon from '@material-ui/icons/Map';
+import SpeakerNotes from '@material-ui/icons/SpeakerNotes';
 
 import {itemsMenuGuest, itemsMenuAdmin} from '../../config/itemsMenu';
 import { connect } from 'react-redux';
@@ -32,6 +33,7 @@ const Icons = (props) => {
     else if(ic === "Domain") return (<DomainIcon />)
     else if(ic === "TrendingUp") return (<TrendingUpIcon />)
     else if(ic === "Map") return (<MapIcon />)
+    else if(ic === "Note") return (<SpeakerNotes />)
     return (
         <VerifiedUserIcon /> 
     )

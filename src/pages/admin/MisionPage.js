@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { connect } from 'react-redux'
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -8,8 +8,10 @@ import {
   Grid, Card, CardContent, 
 } from '@material-ui/core';
 
-
 import Title from '../../components/Title';
+import MissionsList from '../../components/mission/MissionsList';
+
+import * as actions from '../../actions/missionActions';
 
 const styles = theme => ({
   margin: {
@@ -29,14 +31,20 @@ const styles = theme => ({
 class MisionPage extends React.Component{
   state = {    
     title: 'Mision',
-    subtitle: 'Administrar la misión de la organización.',    
+    subtitle: 'Administrar la misión de la organización.',  
   };
 
+  componentWillMount(){
+    this.loadMissions();
+  }
+
+  loadMissions = () => {
+      this.props.dispatch(actions.loadAll())
+  }
   
   render(){
-    const { classes } = this.props;
+    const { classes, missions } = this.props;
     const { title, subtitle } = this.state;
-
     return (
       <div>
         <Grid container spacing={0}>
@@ -45,7 +53,7 @@ class MisionPage extends React.Component{
                 <CardContent>
                   <Title title={title} subtitle={subtitle}/>
 
-                  
+                  <MissionsList missions={missions} />
                 </CardContent>
              </Card>
             </Grid>
@@ -60,4 +68,11 @@ MisionPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MisionPage);
+function mapStateToProps(state){
+  return {
+      missions: state.missions,
+      user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(MisionPage));

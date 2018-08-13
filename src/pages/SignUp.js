@@ -92,10 +92,12 @@ class SignUp extends React.Component{
           client : res.headers['client'],
           uid: res.headers['uid']
         }
+        const message = 'Has iniciado sesión correctamente';
         // convertir un (objeto o json) a string JSON.stringfy
         // convertir un string a (objeto o json) JSON.parse 
         this.props.dispatch(actions.login(JSON.stringify(token)))
         this.props.dispatch(push('/dashboard'));
+        this.props.dispatch(actions.loadMessage(message));
       }).catch(error => {
         console.log(error)
         errors.api = '';

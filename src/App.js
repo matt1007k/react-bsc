@@ -13,7 +13,6 @@ import { withRouter } from 'react-router-dom';
 import './App.css'
 
 
-
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
@@ -67,7 +66,6 @@ class App extends Component {
     
   render() {
     const { classes } = this.props;
-    console.log(this.props)
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.appFrame}>

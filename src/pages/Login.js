@@ -85,6 +85,7 @@ class Login extends React.Component{
     
     if (Object.keys(errors).length === 0){
       const errors = {};
+      const message = 'Has iniciado sesión correctamente';
 
       login(data)
       .then(res => {
@@ -96,13 +97,18 @@ class Login extends React.Component{
         // convertir un (objeto o json) a string JSON.stringfy
         // convertir un string a (objeto o json) JSON.parse 
         this.props.dispatch(actions.login(JSON.stringify(token)))
+        this.props.dispatch(actions.loadUser(res.data))
+        this.props.dispatch(actions.loadMessage(message))
         this.props.dispatch(push('/dashboard'));
+        
       }).catch(error => {
         errors.api = 'Correo electrónico y/o contraseña incorrectos.'
         this.setState({formErrors: errors});
       })
     }
   }
+
+  
 
   validateField = (data) => {
     const errors = {};
@@ -124,6 +130,7 @@ class Login extends React.Component{
                 <CardContent>
                   <Title title={title} subtitle={subtitle}/>
                   {formErrors.api && <ErrorMessage errors={formErrors.api}/>}
+                 
 
                   <form onSubmit={this.loginSubmit}>               
                     <FormControl className={classNames(classes.margin, classes.textField)} error={!!formErrors.email} >

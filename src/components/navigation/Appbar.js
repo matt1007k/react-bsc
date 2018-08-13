@@ -10,6 +10,8 @@ import Drawer from './Drawer';
 import LoginButton from './LoginButton';
 import MenuAccount from './MenuAccount';
 
+import SnackbarMessage from '../messaje/SnackbarMessage';
+
 import { connect } from 'react-redux';
 
 const drawerWidth = 240;
@@ -51,9 +53,9 @@ class Appbar extends Component {
 
     
     render() {
-    const { classes, user } = this.props;
+    const { classes, user, message } = this.props;
     const { titleTemp} = this.state;
-
+      console.log(message)
     return (        
         <AppBar position="static"
           className={classes.appBar}
@@ -66,6 +68,8 @@ class Appbar extends Component {
 
             {user.token ? <MenuAccount /> : <LoginButton />  }
           </Toolbar>
+
+          {message && <SnackbarMessage openMessage={message ? true : false} message={message} duration={4000}/>}
         </AppBar>        
       )
   
@@ -80,7 +84,8 @@ Appbar.propTypes = {
 
 function mapStateToProps(state){
   return{
-    user: state.user
+    user: state.user,
+    message: state.utils.message
   }
 }
 

@@ -37,7 +37,7 @@ export const itemsMenuAdmin = [
     {
         id: 1,
         title: "Misión",
-        icon: "Visibility",
+        icon: "Note",
         url: "/dashboard/mision"
     },
     {
