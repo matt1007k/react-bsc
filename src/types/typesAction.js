@@ -10,3 +10,5 @@ export const LOAD_MISSION = "LOAD_MISSION";
 export const CREATE_MISSION = "CREATE_MISSION";
 export const EDIT_MISSION = "EDIT_MISSION";
 export const DELETE_MISSION = "DELETE_MISSION";
+
+export const ERRORS_API = "ERRORS_API";

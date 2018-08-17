@@ -12,6 +12,8 @@ import { withRouter } from 'react-router-dom';
 
 import './App.css'
 
+import red from '@material-ui/core/colors/red';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -19,6 +21,9 @@ const theme = createMuiTheme({
     secondary: {
       main: '#651fff',
     },
+    error: {
+      main: red[500]
+    }
   },
 });
 

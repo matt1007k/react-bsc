@@ -55,7 +55,7 @@ class Appbar extends Component {
     render() {
     const { classes, user, message } = this.props;
     const { titleTemp} = this.state;
-      console.log(message)
+    
     return (        
         <AppBar position="static"
           className={classes.appBar}

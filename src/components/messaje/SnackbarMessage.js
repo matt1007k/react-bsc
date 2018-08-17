@@ -45,6 +45,11 @@ class SnackbarMessage extends React.Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        errors: state.missions.errors
+    }
+}
   
 
-export default connect()(SnackbarMessage);
+export default connect(mapStateToProps)(SnackbarMessage);

@@ -17,8 +17,12 @@ import SignUp from './pages/SignUp';
 
 import NoFoundPage from './pages/NoFoundPage';
 import Dashboard from './pages/Dashboard';
+
 import MisionPage from './pages/admin/MisionPage';
 import VisionPage from './pages/admin/VisionPage';
+
+
+import MissionEdit from './components/mission/MissionEdit';
 
 
 class Router extends Component {
@@ -30,7 +34,8 @@ class Router extends Component {
           <App>
               <Switch>
                   <Route path="/dashboard" exact component={Dashboard} />
-                  <Route path="/dashboard/mision" component={MisionPage}/>
+                  <Route path="/dashboard/mision" exact component={MisionPage}/>
+                  <Route path="/dashboard/mision/:id/edit" component={MissionEdit}/>
                   <Route path="/dashboard/vision" component={VisionPage}/>
                   <Route component={NoFoundPage} />
               </Switch>

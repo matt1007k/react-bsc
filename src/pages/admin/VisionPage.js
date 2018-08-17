@@ -10,6 +10,11 @@ import {
 
 import Title from '../../components/Title';
 
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+
+import {getAll, postMision, updateMision, deleteMision} from '../../actions/visionActions';
+
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit,
@@ -25,17 +30,35 @@ const styles = theme => ({
   },
 });
 
+
+
 class MisionPage extends React.Component{
   state = {    
     title: 'Vision',
     subtitle: 'Administrar la visión de la organización.',    
   };
 
+  componentDidMount(){
+    this.props.getAll()
+    
+  }
+
+  submit = () => {
+    this.props.postMision()
+  }
+
+  submitUpdate = () => {
+    this.props.updateMision()
+  }
+
+  submitDelete = () => {
+    this.props.deleteMision()
+  }
   
   render(){
     const { classes } = this.props;
     const { title, subtitle } = this.state;
-
+    console.log("estado de vision", this.props.visions);
     return (
       <div>
         <Grid container spacing={0}>
@@ -44,7 +67,9 @@ class MisionPage extends React.Component{
                 <CardContent>
                   <Title title={title} subtitle={subtitle}/>
 
-                  
+                  <button onClick={this.submit}>Add Vision</button>
+                  <button onClick={this.submitUpdate}>Update Vision</button>
+                  <button onClick={this.submitDelete}>Delete Vision</button>
                 </CardContent>
              </Card>
             </Grid>
@@ -59,4 +84,16 @@ MisionPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MisionPage);
+function mapStateToProps(state){
+  return{
+    visions: state.visions.visions
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    getAll, postMision, updateMision, deleteMision
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (withStyles(styles)(MisionPage));
